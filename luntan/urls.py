@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+import views
+import django
+
+'''
+admin 654321!@#$%^
+'''
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$',views.index),
+    #url(r'^static/(?P<path>.*)$',django.contrib.staticfiles.views.serve)
 ]
