@@ -10,5 +10,7 @@ def index(request):
         {"name": "应用安全板块", "desc": "分享应用安全知识", "manager": "atiger77"}
     ]
     '''
-    block_info = Block.objects.all().order_by("id")
+    #只展示状态为正常的板块, Block中models.py定义。
+    #block_info = Block.objects.all().order_by("id")
+    block_info = Block.objects.filter(status=0).order_by("id")
     return render(request,"index.html",{"blocks":block_info})
