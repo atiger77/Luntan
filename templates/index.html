@@ -31,8 +31,8 @@
             {% for b in blocks %}
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <span class="panel-title "><a href="#">{{ b.name }}</a></span>
-                    <span class="pull-right">{{ b.manager }}</span>
+                    <span class="panel-title "><a href="/article/list/{{ b.id }}">{{ b.name }}</a></span>
+                    <span class="pull-right">管理员: {{ b.manager }}</span>
                 </div>
                 <div class="panel-body">
                  {{ b.desc }}
