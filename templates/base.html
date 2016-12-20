@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>论坛首页</title>
+    <!--  bootstrap的css和js文件从http://getbootstrap.com/可以从这里下载 -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+      <div class="row">
+          <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container-fluid">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="#">Author: atiger77</a>
+            </div>
+            </div>
+           </nav>
+
+
+          <div class="col-xs-12 col-md-12">
+              <div class="jumbotron">
+                <center><h2>*** 安全论坛 ***</h2></center>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+       {% block content %}
+       {% endblock %}
+       </div>
+   </div>
+</body>
+</html>
