@@ -8,24 +8,25 @@
       <li><a href="/">首页</a></li>
       <li class="active">{{ b.name }}</li>
     </ol>
-
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
     <br>
-    <form>
+    <form action="/article/create/{{ b.id }}" method="POST">{% csrf_token %}
         标题
-        <input type="text" class="form-control" placeholder="标题">
+        <input type="text" class="form-control" id="inputTitle" placeholder="标题" name="art_title" value="{{ title }}"/>
         <br/>
         内容
-        <input type="text" class="form-control">
+        <textarea type="text" name="art_content" class="form-control">
+            {{ content }}
+        </textarea>
+        <br/>
+        <button class="btn btn-primary">发表</button>
     </form>
     <br>
-    <a href="#" class="btn btn-primary">发表</a>
+
   </div>
 </div>
-
-
-
-
-
 
 
 
