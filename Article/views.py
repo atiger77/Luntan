@@ -14,10 +14,11 @@ def article_list(request,block_id):
 def article_add(request,block_id):
     block_id = int(block_id)
     block = Block.objects.get(id=block_id)
-    '''
+
     if request.method == "GET":
         return render(request, "article_add.html", {"b": block})
     else:
+        '''
         art_title = request.POST["art_title"].strip()
         art_content = request.POST["art_content"].strip()
         if not art_title or not art_content:
@@ -27,11 +28,12 @@ def article_add(request,block_id):
         article = Article(block=block,title=art_title,content=art_content,status=0)
         article.save()
         return redirect("/article/list/%s"%block_id)
-    '''
-    form = ArticleForm(request.POST)
-    if form.is_valid():
-        article = Article(block=block,title=form.cleaned_data["art_title"])
-        article.save()
-        return redirect("/article/list/%s"%block_id)
-    else:
-        return render(request,"article_list.html",{"b":block,"form":form})
+       '''
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = Article(block=block,title=form.cleaned_data["art_title"],content=form.cleaned_data["art_content"],status=0)
+            article.save()
+            return redirect("/article/list/%s" % block_id)
+
+        else:
+            return render(request,"article_add.html",{"b":block,"form":form})

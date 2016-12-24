@@ -8,17 +8,21 @@
       <li><a href="/">首页</a></li>
       <li class="active">{{ b.name }}</li>
     </ol>
-    {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
-    {% endif %}
+    {% for field in form %}
+      {% if field.errors %}
+          {% for error in field.erros %}
+          <div class="alert alert-danger">{{ field.label }}:{{ error }}</div>
+          {% endfor %}
+      {% endif %}
+    {% endfor %}
     <br>
     <form action="/article/create/{{ b.id }}" method="POST">{% csrf_token %}
         标题
-        <input type="text" class="form-control" id="inputTitle" placeholder="标题" name="art_title" value="{{ title }}"/>
+        <input type="text" class="form-control" id="inputTitle" placeholder="标题" name="art_title" value="{{ form.art_title.value }}"/>
         <br/>
         内容
         <textarea type="text" name="art_content" class="form-control">
-            {{ content }}
+            {{ form.art_content.value }}
         </textarea>
         <br/>
         <button class="btn btn-primary">发表</button>

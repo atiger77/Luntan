@@ -4,4 +4,4 @@ from django import forms
 
 class ArticleForm(forms.Form):
     art_title = forms.CharField(label="标题",max_length=100)
-    content = forms.CharField(label="内容", max_length=10000)
+    art_content = forms.CharField(label="内容", max_length=10000)
