@@ -2,9 +2,8 @@ from django.shortcuts import render,redirect
 
 from Article.models import Article
 from Block.models import Block
+from Article.forms import ArticleForm
 
-#导入出现问题.记录下
-# Create your views here.
 
 def article_list(request,block_id):
     block_id = int(block_id)
@@ -32,4 +31,7 @@ def article_add(request,block_id):
     form = ArticleForm(request.POST)
     if form.is_valid():
         article = Article(block=block,title=form.cleaned_data["art_title"])
-
+        article.save()
+        return redirect("/article/list/%s"%block_id)
+    else:
+        return render(request,"article_list.html",{"b":block,"form":form})
