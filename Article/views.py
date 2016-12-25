@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-
+from django.core.paginator import Paginator
 from Article.models import Article
 from Block.models import Block
 from Article.forms import ArticleForm
@@ -8,7 +8,15 @@ from Article.forms import ArticleForm
 def article_list(request,block_id):
     block_id = int(block_id)
     block = Block.objects.get(id=block_id)
-    article_objs = Article.objects.filter(block=block,status=0).order_by("-id")
+    '''实现分页器功能'''
+    article_cnt_1page = 3
+    page_no = int(request.GET.get("page_no","1"))
+    all_articles = Article.objects.filter(block=block,status=0).order_by("-id")
+    p = Paginator(all_articles, article_cnt_1page)
+    page = p.page(page_no)
+    article_objs = page.object_list
+
+
     return render(request,"article_list.html",{"articles":article_objs,"b":block})
 
 def article_add(request,block_id):
