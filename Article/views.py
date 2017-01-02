@@ -16,8 +16,7 @@ def article_list(request,block_id):
     page = p.page(page_no)
     article_objs = page.object_list
 
-
-    return render(request,"article_list.html",{"articles":article_objs,"b":block})
+    return render(request,"article_list.html",{"articles":article_objs,"b":block,"page":page})
 
 def article_add(request,block_id):
     block_id = int(block_id)

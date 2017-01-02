@@ -30,12 +30,33 @@
 </table>
 
 <nav>
+
   <ul class="pagination">
-    <li><a href="#">&laquo;</a></li>
-    <li class="active"><a href="#">3</a></li>
-    <li><a href="#">&raquo;</a></li>
+    <li>
+        {% if page.has_previous %}
+        <a href="?page_no={{ page.previous_page_number }}">&laquo;</a>
+        {% endif %}
+        {% if not page.has_previous %}
+        <a href="#">&laquo;</a>
+        {% endif %}
+    </li>
+    {% for i in page.paginator.page_range %}
+    <li {% if page.number == i %}class="active"{% endif %}>
+        <a href="?page_no={{ i }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+    <li>
+       {% if page.has_next %}
+        <a href="?page_no={{ page.next_page_number }}">&raquo;</a>
+       {% endif %}
+       {% if not page.has_next %}
+        <a href="">&raquo;</a>
+       {% endif %}
+    </li>
+
 
   </ul>
+
 </nav>
 
 
