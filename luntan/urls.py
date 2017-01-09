@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^article/',include('Article.urls')),
     url(r'^$',views.index),
+    url(r'^register$',views.register),
     #url(r'^static/(?P<path>.*)$',django.contrib.staticfiles.views.serve)
 ]

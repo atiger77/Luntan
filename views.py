@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from Block.models import Block
 
+
 def index(request):
     '''
     block_info = [
@@ -15,3 +16,6 @@ def index(request):
     #block_info = Block.objects.all().order_by("id")
     block_info = Block.objects.filter(status=0).order_by("id")
     return render(request,"index.html",{"blocks":block_info})
+
+def register(request):
+    return render(request, "register.html")
