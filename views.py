@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from Block.models import Block
+from django.contrib.auth.models import User
 
 
 def index(request):
@@ -18,4 +19,18 @@ def index(request):
     return render(request,"index.html",{"blocks":block_info})
 
 def register(request):
-    return render(request, "register.html")
+    if request.method == "GET":
+        return render(request, "register.html")
+    else:
+     '''
+     reg_username 注册用户名
+     reg_mail 注册邮箱
+     reg_pwd   注册密码
+     reg_rep_pwd  注册重复密码
+
+     '''
+
+        user = User.objects.create_user('','','')
+        user.is_active = True
+        user.save()
+        return render(request, "index.html")
